@@ -11,12 +11,12 @@ class User(db.Model, UserMixin):
 	fname = db.Column(db.String(20), unique=True, nullable=False)
 	lname = db.Column(db.String(20), unique=True, nullable=False)
 	email = db.Column(db.String(50), unique=True, nullable=False)
-	# image_file = db.Column(db.String(20), nullable=False, default='default.jpg')
+	image_file = db.Column(db.String(20), nullable=False, default='default.jpg')
 	password = db.Column(db.String(60), nullable=False)
 	posts = db.relationship('Post', backref='author', lazy=True )
 
 	def __repr__(self):
-		return f"User('{self.fname}', '{self.lname}', '{self.email}')"
+		return f"User('{self.fname}', '{self.lname}', '{self.email}', '{self.image_file}')"
 
 class Post(db.Model):
 	id = db.Column(db.Integer, primary_key=True)

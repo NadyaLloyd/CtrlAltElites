@@ -16,7 +16,7 @@
 	</head>
 	<body>
 		<div id="head-content">
-			<h1><a class="text-white" href="/">Ctrl ALt Elites</a></h1>
+			<h1><a class="text-white ml-2" href="/">Ctrl ALt Elites</a></h1>
 			<!-- <p id="help" class="text-white">Help</p>
 			{% if is_studentName is defined and is_studentName == "true" %}
 			<p id="studentname" class="text-white">StudentName</p>
@@ -39,7 +39,8 @@
           				  <!-- Navbar Right Side -->
            				    <div class="navbar-nav">
            				    	{% if current_user.is_authenticated %}
-           				    	  <a class="nav-item nav-link text-white" href="/logout">Logout</a>
+           				    	<a class="nav-item nav-link text-white" href="/account">Account</a>
+           				    	<a class="nav-item nav-link text-white" href="/logout">Logout</a>
            				    	{% else %}
            					    <a class="nav-item nav-link text-white" href="/login">Login</a>
              					<a class="nav-item nav-link text-white" href="/registration">Register</a>
@@ -50,7 +51,18 @@
  				 </div> 			
 			</nav>
 		</header>
-		{% endif %}
+		{% endif %}      
+        <div class="col-md-2">
+          {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+              {% for category, message in messages %}
+                <div class="alert alert-{{ category }}">
+                  {{ message }}
+                </div>
+              {% endfor %}
+            {% endif %}
+          {% endwith %}          
+        </div>    
 		{% block content %}
 		{% endblock %}
 		<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
