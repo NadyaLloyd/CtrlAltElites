@@ -1,0 +1,27 @@
+
+CREATE TABLE Course
+             (CourseId          NUMERIC(11,0)     NOT NULL,
+	      CourseName        VARCHAR(25)     NOT NULL,
+             CourseCredit          NUMERIC(11,0)     NOT NULL,
+             Semester        VARCHAR(25)     NOT NULL,
+CONSTRAINT Course_PK PRIMARY KEY (CourseId));
+
+CREATE TABLE Assignment
+             (AssignmentId          NUMERIC(11,0)     NOT NULL,
+	      AssignmentName        VARCHAR(25)     NOT NULL,
+              AssignmentPoints         NUMERIC(11,0)     NOT NULL,
+              AssignmentDescription        VARCHAR(25)     NOT NULL,
+              CourseId                NUMERIC(11,0),
+CONSTRAINT Assignment_PK PRIMARY KEY (AssignmentId),
+CONSTRAINT Assignment_FK1 FOREIGN KEY (CourseId) REFERENCES Course(CourseId));
+
+CREATE TABLE Grade
+             (GradeId          NUMERIC(11,0)     NOT NULL,
+	      GradeValue        VARCHAR(25)     NOT NULL,
+              GradeCategory        VARCHAR(25)     NOT NULL,
+              CourseId                NUMERIC(11,0),
+CONSTRAINT Grade_PK PRIMARY KEY (GradeId),
+CONSTRAINT Grade_FK1 FOREIGN KEY (CourseId) REFERENCES Course(CourseId));
+
+
+

@@ -1,0 +1,48 @@
+{% extends "layout.html" %}
+{% block title %} Course List {% endblock %}
+{% block content %}
+     
+          
+            
+			<style>
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}
+
+tr:nth-child(even) {
+    background-color: #123781;
+}
+
+tr:nth-child(odd) {
+    background-color: #06AEFC;
+}
+</style>
+<div class="article-metadata">
+
+<table style="width:100%">
+<tr>
+<th> Course ID</th>
+<th> Course Name </th>
+
+</tr>
+ {% for row in joined_m_n %}
+<tr>
+             <<td> <a class="mr-2" href="{{ url_for('course1', CourseId=row.CourseId)}}">{{row.CourseId}}</a> </td>
+              <td> {{row.CourseName}} </td>
+			  </tr>
+			  {% endfor %}
+			  </table>
+            </div>
+           
+          
+        
+     
+{% endblock %} 

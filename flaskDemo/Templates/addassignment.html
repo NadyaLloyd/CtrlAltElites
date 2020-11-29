@@ -1,0 +1,83 @@
+{% extends "layout.html" %}
+{% block title %} ADD Assignment {% endblock %}
+{% block content %}
+<div class="col-md-12 justify-content-center">
+	<div class="content-section">
+		<form method="POST" action="">
+			{{ form.hidden_tag() }}
+			<fieldset class="form-group col-md-2 ">
+				<legend class="border-bottom mb-4">ADD Course</legend>				
+				<div class="form-group">
+					{{ form.AssignmentId.label(class="form-control-label") }}
+					{% if form.AssignmentId.errors %}
+						{{ form.AssignmentId(class="form-control form-control-lg is-invalid") }}
+						<div class="invalid-feedback">
+							{% for error in form.AssignmentId.errors %}
+								<span>{{ error }}</span>
+							{% endfor %}
+						</div>
+					{% else %}
+						{{ form.AssignmentId(class="form-control form-control-lg ") }}
+					{% endif %}					
+				</div>
+				<div class="form-group">
+					{{ form.AssignmentName.label(class="form-control-label") }}
+					{% if form.AssignmentName.errors %}
+						{{ form.AssignmentName(class="form-control form-control-lg is-invalid") }}
+						<div class="invalid-feedback">
+							{% for error in form.AssignmentName.errors %}
+								<span>{{ error }}</span>
+							{% endfor %}
+						</div>
+					{% else %}
+						{{ form.AssignmentName(class="form-control form-control-lg ") }}
+					{% endif %}					
+				</div>
+				<div class="form-group">
+					{{ form.AssignmentPoints.label(class="form-control-label") }}
+					{% if form.AssignmentPoints.errors %}
+						{{ form.AssignmentPoints(class="form-control form-control-lg is-invalid") }}
+						<div class="invalid-feedback">
+							{% for error in form.AssignmentPoints.errors %}
+								<span>{{ error }}</span>
+							{% endfor %}
+						</div>
+					{% else %}
+						{{ form.AssignmentPoints(class="form-control form-control-lg ") }}
+					{% endif %}					
+				</div>
+				<div class="form-group">
+                    {{ form.AssignmentDescription.label(class="form-control-label") }}
+                    {% if form.AssignmentDescription.errors %}
+                        {{ form.AssignmentDescription(class="form-control form-control-lg is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.AssignmentDescription.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.AssignmentDescription(class="form-control form-control-lg") }}
+                    {% endif %}
+                </div>
+				<div class="form-group">
+                    {{ form.CourseId.label(class="form-control-label") }}
+                    {% if form.CourseId.errors %}
+                        {{ form.CourseId(class="form-control form-control-lg is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.CourseId.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.CourseId(class="form-control form-control-lg") }}
+                    {% endif %}
+                </div>
+			</fieldset>
+			<div class="form-group border-bottom-1">
+				{{ form.Add(class="ml-3 btn btn-primary btn-lg active") }}
+			</div>
+		</form>
+	</div>
+	
+  
+{% endblock %} 

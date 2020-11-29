@@ -1,0 +1,6 @@
+insert into Course1
+values (1, 'Science', 3, 1), (2, 'Economy', 5, 2), (3,'Biology', 3, 3);
+insert into Assignment
+values(1, 'A1', 20, 'xyz', 1), (2, 'A2', 30, 'ABC', 3), (3, 'A3', 20, 'PQR', 2);
+insert into Grade
+values(1, 'A', 'FirstClass', 1), (2, 'B', 'SecondClass', 3), (3, 'C', 'ThirdClass', 2);

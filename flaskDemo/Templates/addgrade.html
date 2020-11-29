@@ -1,0 +1,70 @@
+{% extends "layout.html" %}
+{% block title %} ADD Grade {% endblock %}
+{% block content %}
+<div class="col-md-12 justify-content-center">
+	<div class="content-section">
+		<form method="POST" action="">
+			{{ form.hidden_tag() }}
+			<fieldset class="form-group col-md-2 ">
+				<legend class="border-bottom mb-4">ADD Grade</legend>				
+				<div class="form-group">
+					{{ form.GradeId.label(class="form-control-label") }}
+					{% if form.GradeId.errors %}
+						{{ form.GradeId(class="form-control form-control-lg is-invalid") }}
+						<div class="invalid-feedback">
+							{% for error in form.GradeId.errors %}
+								<span>{{ error }}</span>
+							{% endfor %}
+						</div>
+					{% else %}
+						{{ form.GradeId(class="form-control form-control-lg ") }}
+					{% endif %}					
+				</div>
+				<div class="form-group">
+					{{ form.GradeValue.label(class="form-control-label") }}
+					{% if form.GradeValue.errors %}
+						{{ form.GradeValue(class="form-control form-control-lg is-invalid") }}
+						<div class="invalid-feedback">
+							{% for error in form.GradeValue.errors %}
+								<span>{{ error }}</span>
+							{% endfor %}
+						</div>
+					{% else %}
+						{{ form.GradeValue(class="form-control form-control-lg ") }}
+					{% endif %}					
+				</div>
+				<div class="form-group">
+					{{ form.GradeCategory.label(class="form-control-label") }}
+					{% if form.GradeCategory.errors %}
+						{{ form.GradeCategory(class="form-control form-control-lg is-invalid") }}
+						<div class="invalid-feedback">
+							{% for error in form.GradeCategory.errors %}
+								<span>{{ error }}</span>
+							{% endfor %}
+						</div>
+					{% else %}
+						{{ form.GradeCategory(class="form-control form-control-lg ") }}
+					{% endif %}					
+				</div>
+				<div class="form-group">
+                    {{ form.CourseId.label(class="form-control-label") }}
+                    {% if form.CourseId.errors %}
+                        {{ form.CourseId(class="form-control form-control-lg is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.CourseId.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.CourseId(class="form-control form-control-lg") }}
+                    {% endif %}
+                </div>
+			</fieldset>
+			<div class="form-group border-bottom-1">
+				{{ form.Add(class="ml-3 btn btn-primary btn-lg active") }}
+			</div>
+		</form>
+	</div>
+	
+  
+{% endblock %} 

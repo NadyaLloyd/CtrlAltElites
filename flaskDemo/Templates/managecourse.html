@@ -4,27 +4,8 @@
 <h1>Manage Course</h1>
 <div class="col-md-12">	
 	<h2 class="text-center"><a href="{{url_for('addcourse')}}" class="text-white">Add New Course</a></h2>
-	<h2 class="text-center"><a href="{{url_for('editcourse')}}" class="text-white">Edit Course</a></h2>
-<table class="table table-striped" style="background: #fff;">
-    <thead>
-      <tr>
-        <th>Course Name</th>
-        <th>Course Id</th>
-        <th>Course Credit</th>
-        <th>Semester</th>
-      </tr>
-    </thead>
-    <tbody>
-  {% for value in range(0,5) %}
-  	  <tr>
-        <td>Comp 436</td>
-        <td>12589</td>
-        <td>3</td>
-        <td>1st</td>
-      </tr>
-  {% endfor %}    
-    </tbody>
-  </table>
+	<h2 class="text-center"><a href="{{url_for('courselist')}}" class="text-white">Course List</a></h2>
+
 
 </div>
 {% endblock %} 

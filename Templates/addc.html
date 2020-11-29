@@ -1,0 +1,189 @@
+{% extends "layout.html" %}
+{% block title %} ADD Course {% endblock %}
+{% block content %}
+<div class="col-md-12 justify-content-center">
+	<div class="content-section">
+		<form method="POST" action="">
+			{{ form.hidden_tag() }}
+			<fieldset class="form-group col-md-2 ">
+				<legend class="border-bottom mb-4">ADD Course</legend>				
+				<div class="form-group">
+					{{ form.CourseId.label(class="form-control-label") }}
+					{% if form.CourseId.errors %}
+						{{ form.CourseId(class="form-control form-control-lg is-invalid") }}
+						<div class="invalid-feedback">
+							{% for error in form.CourseId.errors %}
+								<span>{{ error }}</span>
+							{% endfor %}
+						</div>
+					{% else %}
+						{{ form.CourseId(class="form-control form-control-lg ") }}
+					{% endif %}					
+				</div>
+				<div class="form-group">
+					{{ form.CourseName.label(class="form-control-label") }}
+					{% if form.CourseName.errors %}
+						{{ form.CourseName(class="form-control form-control-lg is-invalid") }}
+						<div class="invalid-feedback">
+							{% for error in form.CourseName.errors %}
+								<span>{{ error }}</span>
+							{% endfor %}
+						</div>
+					{% else %}
+						{{ form.CourseName(class="form-control form-control-lg ") }}
+					{% endif %}					
+				</div>
+				<div class="form-group">
+					{{ form.CourseCredit.label(class="form-control-label") }}
+					{% if form.CourseCredit.errors %}
+						{{ form.CourseCredit(class="form-control form-control-lg is-invalid") }}
+						<div class="invalid-feedback">
+							{% for error in form.CourseCredit.errors %}
+								<span>{{ error }}</span>
+							{% endfor %}
+						</div>
+					{% else %}
+						{{ form.CourseCredit(class="form-control form-control-lg ") }}
+					{% endif %}					
+				</div>
+				<div class="form-group">
+                    {{ form.Semester.label(class="form-control-label") }}
+                    {% if form.Semester.errors %}
+                        {{ form.Semester(class="form-control form-control-lg is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.Semester.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.Semester(class="form-control form-control-lg") }}
+                    {% endif %}
+                </div>
+				<div class="form-group">
+					{{ form.confirm_Semester.label(class="form-control-label") }}
+					{% if form.confirm_Semester.errors %}
+						{{ form.confirm_Semester(class="form-control form-control-lg is-invalid") }}
+						<div class="invalid-feedback">
+							{% for error in form.confirm_Semester.errors %}
+								<span>{{ error }}</span>
+							{% endfor %}
+						</div>
+					{% else %}
+						{{ form.confirm_Semester(class="form-control form-control-lg ") }}
+					{% endif %}
+				</div>
+			</fieldset>
+			<div class="form-group border-bottom-1">
+				{{ form.submit(class="ml-3 btn btn-primary btn-lg active") }}
+			</div>
+		</form>
+	</div>
+	
+
+
+<!-- <div class="login-form">
+	<div class="content-section"> -->
+<!--     <form action="" method="post">
+        <h2 class="text-center" style="color:black">Create Account</h2>  
+        <fieldset class="form-group col-md-12 ">     
+        <div class="form-group">
+            {{ form.CourseId.label(class="form-control-label") }}
+					{% if form.CourseId.errors %}
+						{{ form.CourseId(class="form-control form-control-lg is-invalid") }}
+						<div class="invalid-feedback">
+							{% for error in form.CourseId.errors %}
+								<span>{{ error }}</span>
+							{% endfor %}
+						</div>
+					{% else %}
+						{{ form.CourseId(class="form-control form-control-lg ") }}
+					{% endif %}			
+        </div>
+        <div class="form-group">
+            {{ form.CourseName.label(class="form-control-label") }}
+					{% if form.CourseName.errors %}
+						{{ form.CourseName(class="form-control form-control-lg is-invalid") }}
+						<div class="invalid-feedback">
+							{% for error in form.CourseName.errors %}
+								<span>{{ error }}</span>
+							{% endfor %}
+						</div>
+					{% else %}
+						{{ form.CourseName(class="form-control form-control-lg ") }}
+					{% endif %}		
+        </div>
+         <div class="form-group">
+            {{ form.CourseCredit.label(class="form-control-label") }}
+					{% if form.CourseCredit.errors %}
+						{{ form.CourseCredit(class="form-control form-control-lg is-invalid") }}
+						<div class="invalid-feedback">
+							{% for error in form.CourseCredit.errors %}
+								<span>{{ error }}</span>
+							{% endfor %}
+						</div>
+					{% else %}
+						{{ form.CourseCredit(class="form-control form-control-lg ") }}
+					{% endif %}	
+        </div>
+         <div class="form-group">
+            {{ form.Semester.label(class="form-control-label") }}
+                    {% if form.Semester.errors %}
+                        {{ form.Semester(class="form-control form-control-lg is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.Semester.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.Semester(class="form-control form-control-lg") }}
+                    {% endif %}
+        </div>
+        <div class="form-group">
+            {{ form.confirm_Semester.label(class="form-control-label") }}
+					{% if form.confirm_Semester.errors %}
+						{{ form.confirm_Semester(class="form-control form-control-lg is-invalid") }}
+						<div class="invalid-feedback">
+							{% for error in form.confirm_Semester.errors %}
+								<span>{{ error }}</span>
+							{% endfor %}
+						</div>
+					{% else %}
+						{{ form.confirm_Semester(class="form-control form-control-lg ") }}
+					{% endif %}
+        </div>
+    </fieldset>
+        <div class="form-group">
+            <button type="submit" class="btn btn-primary btn-block" name="submit">Create Account</button>
+        </div>   
+    </form>
+    <p class="text-center"><a href="{{url_for('login')}}" class="text-white">Already have an Account? Sign In</a></p>
+</div>
+</div>
+
+<-- <div class="login-form">
+    <form action="" method="post">
+        <h2 class="text-center" style="color:black">Create Account</h2>       
+        <div class="form-group">
+            <input type="text" class="form-control" placeholder="First Name" name="CourseId" required="required">
+        </div>
+        <div class="form-group">
+            <input type="text" class="form-control" placeholder="Last Name" name="CourseName" required="required">
+        </div>
+         <div class="form-group">
+            <input type="text" class="form-control" placeholder="CourseCredit/UserName" name="CourseCredit" required="required">
+        </div>
+         <div class="form-group">
+            <input type="Semester" class="form-control" placeholder="Semester" name="Semester" required="required">
+        </div>
+        <div class="form-group">
+            <input type="Semester" class="form-control" placeholder="Confirm Semester" name="confirm_Semester" required="required">
+        </div>
+        <div class="form-group">
+            <button type="submit" class="btn btn-primary btn-block" name="submit">Create Account</button>
+        </div>   
+    </form>
+    <p class="text-center"><a href="{{url_for('login')}}" class="text-white">Already have an Account? Sign In</a></p>
+</div>
+</div> -->
+  
+{% endblock %} 
