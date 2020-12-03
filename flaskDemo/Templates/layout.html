@@ -16,11 +16,7 @@
 	</head>
 	<body>
 		<div id="head-content">
-			<h1><a class="text-white ml-2" href="/">Ctrl ALt Elites</a></h1>
-			<!-- <p id="help" class="text-white">Help</p>
-			{% if is_studentName is defined and is_studentName == "true" %}
-			<p id="studentname" class="text-white">StudentName</p>
-			{% endif %} -->
+			<h1><a class="text-white ml-3" href="/">Ctrl ALt Elites</a></h1>
 		</div>
 		{% if is_navbar is defined and is_navbar == "true" %}
 		<header class ="site-header">
@@ -31,10 +27,10 @@
   						</button>
   						<div class="collapse navbar-collapse" id="navbarToggle">
            					 <div class="navbar-nav mr-auto">
-             					 <a class="nav-item nav-link" href="{{ url_for('managecourse') }}">Manage Course</a>
-           					   		<a class="nav-item nav-link text-white" href="/manageassignment">Manage Assignment</a>
-          				 	 		  <a class="nav-item nav-link text-white" href="/managegrades">Manage Grades</a>
-         				 	   			 <a class="nav-item nav-link text-white" href="/goals">Goals</a>
+             					 <a class="nav-item nav-link text-white" href="{{ url_for('courselist') }}">Manage Course</a>
+           					   		<a class="nav-item nav-link text-white" href="/assignmentlist">Manage Assignment</a>
+          				 	 		  <a class="nav-item nav-link text-white" href="/gradelist">Manage Grades</a>
+         				 	   			 <!-- <a class="nav-item nav-link text-white" href="/goals">Goals</a> -->
           			   		 </div>
           				  <!-- Navbar Right Side -->
            				    <div class="navbar-nav">

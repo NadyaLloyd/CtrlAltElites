@@ -1,26 +1,13 @@
 {% extends "layout.html" %}
-{% block title %} Add Grade {% endblock %}
+{% block title %} Edit Grades {% endblock %}
 {% block content %}
 <div class="col-md-12 justify-content-center">
-	<a class="mt-3 font-weight-bolder btn-lg text-white" href="{{ url_for('gradelist')}}">View Grades List</a>
+	<a class="mt-3 font-weight-bolder btn-lg text-white" href="{{ url_for('gradelist')}}"><< Back to Grades List</a>
 	<div class="content-section">
 		<form method="POST" action="">
 			{{ form.hidden_tag() }}
 			<fieldset class="form-group col-md-2 mt-3">
-				<legend class="border-bottom">Add Grade</legend>				
-				<div class="form-group">
-					{{ form.GradeId.label(class="form-control-label") }}
-					{% if form.GradeId.errors %}
-						{{ form.GradeId(class="form-control form-control-lg is-invalid") }}
-						<div class="invalid-feedback">
-							{% for error in form.GradeId.errors %}
-								<span>{{ error }}</span>
-							{% endfor %}
-						</div>
-					{% else %}
-						{{ form.GradeId(class="form-control form-control-lg ") }}
-					{% endif %}					
-				</div>
+				<legend class="border-bottom mb-4">Edit Grades</legend>			
 				<div class="form-group">
 					{{ form.GradeValue.label(class="form-control-label") }}
 					{% if form.GradeValue.errors %}

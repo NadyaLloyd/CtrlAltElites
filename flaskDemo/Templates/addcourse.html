@@ -2,11 +2,12 @@
 {% block title %} ADD Course {% endblock %}
 {% block content %}
 <div class="col-md-12 justify-content-center">
+	<a class="mt-3 font-weight-bolder btn-lg text-white" href="{{ url_for('courselist')}}"><u>View Course List</u></a>
 	<div class="content-section">
 		<form method="POST" action="">
 			{{ form.hidden_tag() }}
-			<fieldset class="form-group col-md-2 ">
-				<legend class="border-bottom mb-4">ADD Course</legend>				
+			<fieldset class="form-group col-md-2 mt-3 ">
+				<legend class="border-bottom">Add Course</legend>				
 				<div class="form-group">
 					{{ form.CourseId.label(class="form-control-label") }}
 					{% if form.CourseId.errors %}

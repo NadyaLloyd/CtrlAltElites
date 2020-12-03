@@ -1,11 +1,11 @@
 {% extends "layout.html" %}
 {% block title %} Manage Grades {% endblock %}
 {% block content %}
-<h1>Manage Grades</h1>
+<div class="ml-2">
+	<h1>Manage Grades</h1>
+</div>
 <div class="col-md-12">	
 	<h2 class="text-center"><a href="{{url_for('addgrade')}}" class="text-white">Add New Grade</a></h2>
-	<<h2 class="text-center"><a href="{{url_for('gradelist')}}" class="text-white">Grade List</a></h2>
-
-
+	<h2 class="text-center"><a href="{{url_for('gradelist')}}" class="text-white">Grade List</a></h2>
 </div>
 {% endblock %} 

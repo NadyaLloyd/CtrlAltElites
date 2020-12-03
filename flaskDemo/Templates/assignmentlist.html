@@ -1,48 +1,32 @@
 {% extends "layout.html" %}
-{% block title %} Course List {% endblock %}
-{% block content %}
-     
-          
-            
-			<style>
-table {
-    font-family: arial, sans-serif;
-    border-collapse: collapse;
-    width: 100%;
-}
-
-td, th {
-    border: 1px solid #dddddd;
-    text-align: left;
-    padding: 8px;
-}
-
-tr:nth-child(even) {
-    background-color: #123781;
-}
-
-tr:nth-child(odd) {
-    background-color: #06AEFC;
-}
-</style>
-<div class="article-metadata">
-
-<table style="width:100%">
-<tr>
-<th> Assignment ID</th>
-<th> Assignment Name </th>
-
-</tr>
- {% for row in joined_m_n %}
-<tr>
-             <<td> <a class="mr-2" href="{{ url_for('assignment1', AssignmentId=row.AssignmentId)}}">{{row.AssignmentId}}</a> </td>
-              <td> {{row.AssignmentName}} </td>
-			  </tr>
-			  {% endfor %}
-			  </table>
-            </div>
-           
-          
-        
-     
+{% block title %} Assignment List {% endblock %}
+{% block content %}        
+<div class="ml-4">
+    <h1>Assignment List:</h1>
+</div>
+<a class="mt-3 ml-2 font-weight-bolder btn-lg text-white" href="{{ url_for('addassignment')}}">+Add New Assignment</a>
+<div class="article-metadata ml-4 mr-4 mt-2">
+<table>
+    <tr class="tr-line">
+        <th class="th-line"> Assignment ID</th>
+        <th class="th-line"> Assignment Name </th>
+        <th class="th-line"> Assignment Points </th>
+        <th class="th-line"> Assignment Description </th>
+        <th class="th-line"> Course Name </th>
+        <th class="th-line"></th>
+    </tr>
+    {% for row in joined_m_n %}
+    <tr class="tr-line">
+        <td class="td-line"> {{row.AssignmentId}}</td>
+        <td class="td-line"> {{row.AssignmentName}} </td>
+        <td class="td-line"> {{row.AssignmentPoints}} </td>
+        <td class="td-line"> {{row.AssignmentDescription}} </td>
+        <td class="td-line"> {{row.CourseName}} </td>
+        <td class="td-line"> <a class="mr-2 text-white" href="{{ url_for('assignment_update', AssignmentId=row.AssignmentId)}}">Update</a>| 
+             <a class="mr-2 text-white" href="{{ url_for('assignment_delete',AssignmentId=row.AssignmentId)}}">Delete</a> 
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+</div>       
 {% endblock %} 

@@ -1,26 +1,13 @@
 {% extends "layout.html" %}
-{% block title %} Add Assignment {% endblock %}
+{% block title %} Edit Assignment {% endblock %}
 {% block content %}
-<div class="col-md-12 justify-content-center">
-	<a class="mt-3 font-weight-bolder btn-lg text-white" href="{{ url_for('assignmentlist')}}">View Assignment List</a>
+<div class="col-md-12 mt-2 justify-content-center">
+	<a class="mt-3 font-weight-bolder btn-lg text-white" href="{{ url_for('assignmentlist')}}"><< Back to Assignment List</a>
 	<div class="content-section">
 		<form method="POST" action="">
 			{{ form.hidden_tag() }}
-			<fieldset class="form-group col-md-2 mt-3">
-				<legend class="border-bottom">Add Assignment</legend>				
-				<div class="form-group">
-					{{ form.AssignmentId.label(class="form-control-label") }}
-					{% if form.AssignmentId.errors %}
-						{{ form.AssignmentId(class="form-control form-control-lg is-invalid") }}
-						<div class="invalid-feedback">
-							{% for error in form.AssignmentId.errors %}
-								<span>{{ error }}</span>
-							{% endfor %}
-						</div>
-					{% else %}
-						{{ form.AssignmentId(class="form-control form-control-lg ") }}
-					{% endif %}					
-				</div>
+			<fieldset class="form-group col-md-2 mt-3 ">
+				<legend class="border-bottom mb-4">Edit Assignment</legend>				
 				<div class="form-group">
 					{{ form.AssignmentName.label(class="form-control-label") }}
 					{% if form.AssignmentName.errors %}
@@ -78,7 +65,5 @@
 				{{ form.Add(class="ml-3 btn btn-primary btn-lg active") }}
 			</div>
 		</form>
-	</div>
-	
-  
+	</div>  
 {% endblock %} 

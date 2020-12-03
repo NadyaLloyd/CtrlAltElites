@@ -1,48 +1,30 @@
 {% extends "layout.html" %}
 {% block title %} Course List {% endblock %}
-{% block content %}
-     
-          
-            
-			<style>
-table {
-    font-family: arial, sans-serif;
-    border-collapse: collapse;
-    width: 100%;
-}
-
-td, th {
-    border: 1px solid #dddddd;
-    text-align: left;
-    padding: 8px;
-}
-
-tr:nth-child(even) {
-    background-color: #123781;
-}
-
-tr:nth-child(odd) {
-    background-color: #06AEFC;
-}
-</style>
-<div class="article-metadata">
-
-<table style="width:100%">
-<tr>
-<th> Course ID</th>
-<th> Course Name </th>
-
-</tr>
- {% for row in joined_m_n %}
-<tr>
-             <<td> <a class="mr-2" href="{{ url_for('course1', CourseId=row.CourseId)}}">{{row.CourseId}}</a> </td>
-              <td> {{row.CourseName}} </td>
-			  </tr>
-			  {% endfor %}
-			  </table>
-            </div>
-           
-          
-        
-     
+{% block content %}       
+<div class="ml-4">
+    <h1>Course List:</h1>
+</div> 
+<a class="mt-3 ml-2 font-weight-bolder btn-lg text-white" href="{{ url_for('addcourse')}}">+Add New Course</a>
+<div class="article-metadata ml-4 mr-4 mt-2">
+<table>
+    <tr class="tr-line">
+        <th class="th-line"> Course ID</th>
+        <th class="th-line"> Course Name </th>
+        <th class="th-line"> Course Credit </th>
+        <th class="th-line"> Semester </th>
+        <th class="th-line"></th>
+    </tr>
+    {% for row in joined_m_n %}
+    <tr class="tr-line">
+        <td class="td-line"> {{row.CourseId}}</td>
+        <td class="td-line"> {{row.CourseName}} </td>
+        <td class="td-line"> {{row.CourseCredit}} </td>
+        <td class="td-line"> {{row.Semester}} </td>
+        <td class="td-line"> <a class="mr-2 text-white" href="{{ url_for('course_update', CourseId=row.CourseId)}}">Update</a>| 
+             <a class="mr-2 text-white" href="{{ url_for('course_delete',CourseId=row.CourseId)}}">Delete</a> 
+        </td>
+	</tr>
+	{% endfor %}
+</table>
+</div>     
 {% endblock %} 

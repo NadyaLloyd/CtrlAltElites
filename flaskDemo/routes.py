@@ -83,12 +83,8 @@ def account():
 	image_file = url_for('static', filename='Profile_pics/' + current_user.image_file)
 	return render_template("account.html", title="Account",image_file=image_file,form=form,is_navbar = "true")
 
-@app.route("/managecourse", methods=['GET', 'POST'])
-def managecourse():
-    
-    return render_template('managecourse.html')
-
 @app.route("/addcourse", methods=['GET', 'POST'])
+@login_required
 def addcourse():
     form = ADDCourse()
     if form.validate_on_submit():
@@ -97,21 +93,17 @@ def addcourse():
         db.session.commit()
         flash('Course Added', 'success')
         return redirect(url_for('courselist'))
-    return render_template('addcourse.html', form=form, legend='Add Purchase')
+    return render_template('addcourse.html',is_navbar = "true", form=form, legend='Add Purchase')
 
 @app.route("/courselist", methods=['GET', 'POST'])
+@login_required
 def courselist():
     results = db.session.query(Course)\
-              .add_columns(Course.CourseId, Course.CourseName)
-    return render_template('courselist.html', joined_m_n=results)
+              .add_columns(Course.CourseId, Course.CourseName, Course.CourseCredit, Course.Semester)
+    return render_template('courselist.html',is_navbar = "true", joined_m_n=results)
 
-@app.route("/course1/<CourseId>")
-@login_required
-def course1(CourseId):
-    course = db.session.query(Course).filter_by(CourseId=CourseId).first()
-    return render_template('course_u_d.html', course=course)
 
-@app.route("/course_delete/<CourseId>", methods=['POST'])
+@app.route("/course_delete/<CourseId>", methods=['GET','POST'])
 @login_required
 def course_delete(CourseId):
     course = db.session.query(Course).filter_by(CourseId=CourseId).first()
@@ -135,27 +127,30 @@ def course_update(CourseId):
         db.session.commit()
         flash('Your Course has been Updated', 'success')
         return redirect(url_for('courselist'))
-    elif request.method == 'GET':              
-
+    elif request.method == 'GET':
         form.CourseId.data = course.CourseId
         form.CourseName.data = course.CourseName
         form.CourseCredit.data = course.CourseCredit
         form.Semester.data = course.Semester
-    return render_template('addcourse.html', form=form, legend='Update Course')
+    return render_template('editcourse.html',is_navbar = "true", form=form, legend='Update Course')
 
 @app.route("/home", methods=["GET", "POST"])
+@login_required
 def home():
   	return render_template("home.html", content="Testing",is_navbar = "true", is_studentName = "true")
 
-#@app.route("/managecourse")
-#def managecourse():
-	#return render_template("managecourse.html", content="Testing",is_navbar = "true", is_studentName = "true")
+@app.route("/managecourse")
+@login_required
+def managecourse():
+	return render_template("managecourse.html", content="Testing",is_navbar = "true", is_studentName = "true")
 
 @app.route("/manageassignment")
+@login_required
 def manageassignment():
 	return render_template("manageassignment.html", content="Testing",is_navbar = "true", is_studentName = "true")
 
 @app.route("/addassignment", methods=['GET', 'POST'])
+@login_required
 def addassignment():
     form = ADDAssignment()
     if form.validate_on_submit():
@@ -164,23 +159,19 @@ def addassignment():
         db.session.commit()
         flash('Assignment Added', 'success')
         return redirect(url_for('assignmentlist'))
-    return render_template('addassignment.html', form=form, legend='Add Purchase')
+    return render_template('addassignment.html',is_navbar = "true", form=form, legend='Add Purchase')
 
 @app.route("/assignmentlist", methods=['GET', 'POST'])
+@login_required
 def assignmentlist():
     results = db.session.query(Assignment)\
-              .add_columns(Assignment.AssignmentId, Assignment.AssignmentName)
-    return render_template('assignmentlist.html', joined_m_n=results)
+              .join(Course,Assignment.CourseId==Course.CourseId)\
+              .add_columns(Assignment.AssignmentId, Assignment.AssignmentName,Assignment.AssignmentPoints,Assignment.AssignmentDescription, Course.CourseName)
+    return render_template('assignmentlist.html',is_navbar = "true", joined_m_n=results)
 
-@app.route("/assignment1/<AssignmentId>")
+@app.route("/assignment_delete/<AssignmentId>", methods=['GET','POST'])
 @login_required
-def assignment1(AssignmentId):
-    assignment = db.session.query(Assignment).filter_by(AssignmentId=AssignmentId).first()
-    return render_template('assignment_u_d.html', assignment=assignment)
-
-@app.route("/assignment_delete/<AssignmentId>", methods=['POST'])
-@login_required
-def assignment_delete(CourseId):
+def assignment_delete(AssignmentId):
     assignment = db.session.query(Assignment).filter_by(AssignmentId=AssignmentId).first()
     db.session.delete(assignment)
     db.session.commit()
@@ -208,14 +199,16 @@ def assignment_update(AssignmentId):
         form.AssignmentName.data = assignment.AssignmentName
         form.AssignmentPoints.data = assignment.AssignmentPoints
         form.AssignmentDescription.data = assignment.AssignmentDescription
-    return render_template('addassignment.html', form=form, legend='Update Assignment')
+    return render_template('editassignment.html',is_navbar = "true", form=form, legend='Update Assignment')
 
 
 @app.route("/managegrades")
+@login_required
 def managegrades():
 	return render_template("managegrades.html", content="Testing",is_navbar = "true", is_studentName = "true")
 
 @app.route("/addgrade", methods=['GET', 'POST'])
+@login_required
 def addgrade():
     form = ADDGrade()
     if form.validate_on_submit():
@@ -224,23 +217,19 @@ def addgrade():
         db.session.commit()
         flash('Grade Added', 'success')
         return redirect(url_for('gradelist'))
-    return render_template('addgrade.html', form=form, legend='Add Grade')
+    return render_template('addgrade.html', form=form,is_navbar = "true", legend='Add Grade')
 
 @app.route("/gradelist", methods=['GET', 'POST'])
+@login_required
 def gradelist():
     results = db.session.query(Grade)\
-              .add_columns(Grade.GradeId, Grade.GradeValue, Grade.CourseId)
-    return render_template('gradelist.html', joined_m_n=results)
+              .join(Course,Grade.CourseId==Course.CourseId)\
+              .add_columns(Grade.GradeId, Grade.GradeValue, Grade.GradeCategory, Course.CourseName)
+    return render_template('gradelist.html',is_navbar = "true", joined_m_n=results)
 
-@app.route("/grade1/<GradeId>")
+@app.route("/grade_delete/<GradeId>", methods=['Get','POST'])
 @login_required
-def grade1(GradeId):
-    grade = db.session.query(Grade).filter_by(GradeId=GradeId).first()
-    return render_template('grade_u_d.html', grade=grade)
-
-@app.route("/grade_delete/<GradeId>", methods=['POST'])
-@login_required
-def grade_delete(CourseId):
+def grade_delete(GradeId):
     grade = db.session.query(Grade).filter_by(GradeId=GradeId).first()
     db.session.delete(grade)
     db.session.commit()
@@ -257,7 +246,6 @@ def grade_update(GradeId):
         grade.GradeId=form.GradeId.data
         grade.GradeValue=form.GradeValue.data
         grade.GradeCategory=form.GradeCategory.data
-        grade.CourseId=form.CourseId.data
         db.session.commit()
         flash('Your Grade has been Updated', 'success')
         return redirect(url_for('gradelist'))
@@ -266,9 +254,5 @@ def grade_update(GradeId):
         form.GradeId.data = grade.GradeId
         form.GradeValue.data = grade.GradeValue
         form.GradeCategory.data = grade.GradeCategory
-        form.CourseId.data = grade.CourseId
-    return render_template('addgrade.html', form=form, legend='Update Grade')
+    return render_template('editgrades.html', form=form, is_navbar = "true", legend='Update Grade')
 
-@app.route("/goals")
-def goals():
-	return render_template("goals.html", content="Testing",is_navbar = "true", is_studentName = "true")

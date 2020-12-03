@@ -70,38 +70,37 @@ class ADDAssignment(FlaskForm) :
         AssignmentName = StringField('AssignmentName', validators=[DataRequired()])
         AssignmentPoints = IntegerField('AssignmentPoints', validators=[DataRequired()])
         AssignmentDescription = StringField('AssignmentDescription', validators=[DataRequired()])
-        CourseId = SelectField('CourseId', choices=myChoices, coerce=int) 
+        CourseId = SelectField('CourseName', choices=myChoices, coerce=int) 
         Add = SubmitField('Add Assignment')
 
         def validate_pid(self, AssignmentId):
             assignment = Assignment.query.filter_by(AssignmentId=AssignmentId.data).first()
             if assignment:
-                raise ValidationError('AssignmentId already taken please choose different Id')
+                raise ValidationError('AssignmentId already taken. Please choose different Id')
 
 class UpdateAssignment(FlaskForm) :
         AssignmentId = HiddenField("")
         AssignmentName = StringField('AssignmentName', validators=[DataRequired()])
         AssignmentPoints = IntegerField('AssignmentPoints', validators=[DataRequired()])
         AssignmentDescription = StringField('AssignmentDescription', validators=[DataRequired()])
-        CourseId = SelectField('CourseId', choices=myChoices, coerce=int) 
+        CourseId = SelectField('CourseName', choices=myChoices, coerce=int) 
         Add = SubmitField('Update Assignment')
 
 class ADDGrade(FlaskForm) :
         GradeId = IntegerField('GradeId', validators=[DataRequired()])
         GradeValue = StringField('GradeValue', validators=[DataRequired()])
         GradeCategory = StringField('GradeCategory', validators=[DataRequired()])
-        CourseId = SelectField('CourseId', choices=myChoices, coerce=int) 
+        CourseId = SelectField('CourseName', choices=myChoices, coerce=int) 
         Add = SubmitField('Add Grade')
 
         def validate_pid(self, GradeId):
             grade = Grade.query.filter_by(GradeId=GradeId.data).first()
             if Grade:
-                raise ValidationError('GradeId already taken please choose different Id')
-                
+                raise ValidationError('GradeId already taken please choose different Id')                
 
 class UpdateGrade(FlaskForm) :
         GradeId = HiddenField("")
         GradeValue = StringField('GradeValue', validators=[DataRequired()])
         GradeCategory = StringField('GradeCategory', validators=[DataRequired()])
-        CourseId = SelectField('CourseId', choices=myChoices, coerce=int) 
+        CourseId = SelectField('CourseName', choices=myChoices, coerce=int) 
         Add = SubmitField('Update Grade')

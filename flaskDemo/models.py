@@ -43,4 +43,4 @@ class Grade(db.Model):
     __table__ = db.Model.metadata.tables['grade']
     
 class Course(db.Model):
-    __table__ = db.Model.metadata.tables['course1']
+    __table__ = db.Model.metadata.tables['course']

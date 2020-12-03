@@ -1,49 +1,30 @@
 {% extends "layout.html" %}
-{% block title %} Course List {% endblock %}
-{% block content %}
-     
-          
-            
-			<style>
-table {
-    font-family: arial, sans-serif;
-    border-collapse: collapse;
-    width: 100%;
-}
-
-td, th {
-    border: 1px solid #dddddd;
-    text-align: left;
-    padding: 8px;
-}
-
-tr:nth-child(even) {
-    background-color: #123781;
-}
-
-tr:nth-child(odd) {
-    background-color: #06AEFC;
-}
-</style>
-<div class="article-metadata">
-
-<table style="width:100%">
-<tr>
-<th> Grade ID</th>
-<th> Grade Value </th>
-<th> Course </th>
-</tr>
- {% for row in joined_m_n %}
-<tr>
-             <<td> <a class="mr-2" href="{{ url_for('grade1', GradeId=row.GradeId)}}">{{row.GradeId}}</a> </td>
-              <td> {{row.CourseValue}} </td>
-			  <td> {{row.CourseId}} </td>
-			  </tr>
-			  {% endfor %}
-			  </table>
-            </div>
-           
-          
-        
-     
+{% block title %} Grades List {% endblock %}
+{% block content %}        
+<div class="ml-4">
+    <h1>Grades List:</h1>
+</div>
+<a class="mt-3 ml-2 font-weight-bolder btn-lg text-white" href="{{ url_for('addgrade')}}">+Add New Grades</a>
+<div class="article-metadata ml-4 mr-4 mt-2">
+<table>
+    <tr class="tr-line">
+        <th class="th-line"> Grade ID</th>
+        <th class="th-line"> Grade Value </th>
+        <th class="th-line"> Grade Category </th>
+        <th class="th-line"> Course Name </th>
+        <th class="th-line"></th>
+    </tr>
+    {% for row in joined_m_n %}
+    <tr class="tr-line">
+        <td class="td-line"> {{row.GradeId}}</td>
+        <td class="td-line"> {{row.GradeValue}} </td>
+        <td class="td-line"> {{row.GradeCategory}} </td>
+        <td class="td-line"> {{row.CourseName}} </td>
+        <td class="td-line"> <a class="mr-2 text-white" href="{{ url_for('grade_update', GradeId=row.GradeId)}}">Update</a>| 
+             <a class="mr-2 text-white" href="{{ url_for('grade_delete', GradeId=row.GradeId)}}">Delete</a> 
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+</div>     
 {% endblock %} 
